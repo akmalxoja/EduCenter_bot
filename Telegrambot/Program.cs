@@ -177,7 +177,7 @@ class Program
 
     private static async Task SendContact(ITelegramBotClient botClient, long chatId, string centerName)
     {
-        string contactText = $"{centerName} bilan bog'lanish uchun:\nTelefon: +998901234567\nEmail: info@{centerName.ToLower().Replace(" ", "")}.uz";
+        string contactText = $"{centerName} bilan bog'lanish uchun:\nTelefon: +998903311027\nEmail: info@{centerName.ToLower().Replace(" ", "")}.uz";
 
         await botClient.SendTextMessageAsync(
             chatId: chatId,
@@ -188,8 +188,29 @@ class Program
 
     private static async Task SendLocation(ITelegramBotClient botClient, long chatId, string centerName)
     {
-        float latitude = 41.2995f;
-        float longitude = 69.2401f;
+        float latitude = 0f;
+        float longitude = 0f;
+
+        // Har bir markaz uchun lokatsiyalarni belgilaymiz
+        switch (centerName)
+        {
+            case "Markaz 1":
+                latitude = 41.3111f;
+                longitude = 69.2797f;
+                break;
+            case "Markaz 2":
+                latitude = 41.3275f;
+                longitude = 69.2817f;
+                break;
+            case "Markaz 3":
+                latitude = 41.2995f;
+                longitude = 69.2401f;
+                break;
+            case "Markaz 4":
+                latitude = 41.3122f;
+                longitude = 69.2785f;
+                break;
+        }
 
         await botClient.SendLocationAsync(
             chatId: chatId,
